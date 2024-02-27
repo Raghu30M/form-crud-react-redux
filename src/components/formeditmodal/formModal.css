@@ -1,0 +1,49 @@
+.modal-section .modal-content {
+    box-shadow: 0px 0px 20px -8px rgba(255, 255, 255, 0.8);
+    -webkit-box-shadow: 0px 0px 20px -8px rgba(255, 255, 255, 0.8);
+    -moz-box-shadow: 0px 0px 20px -8px rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    border-radius: 10px;
+}
+
+.modal-section .modal-content .modal-header .modal-title {
+    color: white;
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+
+.modal-section .modal-content .modal-body .form-element .form-label {
+    color: black;
+    letter-spacing: 2px;
+}
+
+.modal-section .modal-content .modal-body .form-element .form-control:focus {
+    box-shadow: none;
+    border: 1px solid rgba(255, 255, 255, 1);
+    transition: 0.3s ease-in-out;
+}
+
+.modal-section .modal-content .form-element .form-check .form-check-input:checked {
+    box-shadow: none;
+    background-color: #8e0e00;
+    border-color: #8e0e00;
+}
+
+.modal-section .modal-content .modal-header .btn-close:focus {
+    box-shadow: none;
+    outline: none;
+}
+
+.modal-section .modal-content .modal-footer .btn-update {
+    background-color: #8e0e00;
+    color: white;
+    letter-spacing: 1px;
+}
+
+.modal-section .modal-content .modal-footer .btn-cancel {
+    background-color:black;
+    color: white;
+    letter-spacing: 1px;
+}

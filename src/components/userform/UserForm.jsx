@@ -3,6 +3,7 @@ import "./userForm.css";
 import { useForm } from "react-hook-form";
 import { useSelector, useDispatch } from "react-redux";
 import { submitForm } from "../../features/form_details/FormSlice";
+import { toast } from "react-toastify";
 import { v4 as uuidv4 } from "uuid";
 
 const UserForm = () => {
@@ -11,15 +12,16 @@ const UserForm = () => {
         register,
         handleSubmit,
         formState: { errors },
+        reset,
     } = useForm();
 
     // USESELECTOR
     const formSlice = useSelector((state) => state.form);
 
     // LOGGING FORMDATA
-    useEffect(() => {
-        console.log(formSlice);
-    }, [formSlice]);
+    // useEffect(() => {
+    //     // console.log(formSlice);
+    // }, [formSlice]);
 
     // USEDISPATCH
     const dispatch = useDispatch();
@@ -33,18 +35,32 @@ const UserForm = () => {
                         className="row justify-content-center"
                         onSubmit={handleSubmit((data) => {
                             const newData = {
-                                id: uuidv4(), // Generating a unique ID
+                                id: uuidv4(),
                                 createdAt: new Date().toLocaleString("en-IN", {
                                     timeZone: "Asia/Kolkata",
-                                }), // Adding the current date and time
-                                ...data, // Including the original data
+                                }),
+                                updateAt: new Date().toLocaleString("en-IN", {
+                                    timeZone: "Asia/Kolkata",
+                                }),
+                                ...data,
                             };
                             dispatch(submitForm(newData));
+                            reset();
+                            toast.success("Form submitted !", {
+                                position: "top-center",
+                                autoClose: 1000,
+                                hideProgressBar: false,
+                                closeOnClick: true,
+                                pauseOnHover: true,
+                                draggable: true,
+                                progress: undefined,
+                                theme: "dark",
+                            });
                         })}
                     >
-                        {/* USER-NAME  */}
                         <div className="col-md-6">
                             <div className="form-elements">
+                                {/* USER-NAME  */}
                                 <div className="mb-3">
                                     <label
                                         htmlFor="username"
@@ -80,7 +96,7 @@ const UserForm = () => {
                                 {/* USER-MAIL  */}
                                 <div className="mb-3">
                                     <label
-                                        htmlFor="username"
+                                        htmlFor="usermail"
                                         className="form-label"
                                     >
                                         E-MAIL
@@ -225,12 +241,12 @@ const UserForm = () => {
                                         >
                                             Learning
                                         </label>
-                                        {errors.hobby && (
-                                            <small className="text-danger d-block">
-                                                {errors.hobby.message}
-                                            </small>
-                                        )}
                                     </div>
+                                    {errors.hobby && (
+                                        <small className="text-danger d-block">
+                                            {errors.hobby.message}
+                                        </small>
+                                    )}
                                 </div>
                                 {/* USER-QUALIFICATION */}
                                 <div className="mb-3">
